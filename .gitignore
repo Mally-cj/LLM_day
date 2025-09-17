@@ -4,3 +4,6 @@ poetry_model_small
 
 
 fine_tuned_poetry_instruction_model
+
+/trl
+/model
