@@ -7,3 +7,6 @@ fine_tuned_poetry_instruction_model
 
 /trl
 /model
+/project
+/module
+/rl
