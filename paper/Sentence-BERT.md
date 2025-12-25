@@ -1,6 +1,6 @@
 📑 论文研读笔记：Sentence-BERT (SBERT)
 
-2025-12-24 21:11:05 Wednesday
+2025-12-24 21:11:05 Wednesday 
 
 
 ## 1. 基础信息 (Basic Information)
