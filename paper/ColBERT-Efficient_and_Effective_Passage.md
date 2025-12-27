@@ -142,47 +142,6 @@ $$\mathcal{L}=-\log\frac{\exp(S_{q,d^+})}{\exp(S_{q,d^+})+\sum_{j=1}^{k}\exp(S_{
 * **设计直觉**：这被称为 **Query Augmentation**。查询往往非常短，能够匹配的信息太少。`[MASK]` 向量在经过 BERT 编码后，会根据查询上下文学习到一些“潜在的补充语义”，在打分时能起到软搜索（Soft Search）的作用，提高召回的鲁棒性。
 
 
-
-## 4. 实验验证 (Experiments)
-
-### 4.1 实验设置
-
-* **数据集**：
-
-  * MS MARCO Passage Ranking
-  * TREC Deep Learning Track
-
-* **评估指标 (Metrics)**：
-
-  * MRR@10
-  * Recall@K
-  * NDCG
-
----
-
-### 4.2 关键结论
-
-1. **主要性能提升**：
-   在 MS MARCO 上显著优于 BM25 与 DPR，接近甚至超过部分 Cross-Encoder。
-
-2. **消融实验 (Ablation Study)**：
-
-   * 移除 Late Interaction 或 MaxSim → 性能明显下降
-   * 使用 mean pooling 替代 MaxSim → 表现退化
-     👉 token-level Late Interaction 是核心贡献。
-
-3. **效率评估**：
-
-   * 文档编码完全离线
-   * 查询阶段仅进行向量点积与 max 操作
-   * 相比 Cross-Encoder 推理成本大幅降低
-
----
-
-这份实验笔记是专门为你（算法工程师视角）定制的。我们不再只看那几张数据表，而是拆解作者是如何通过实验来**自圆其说**并**反驳**质疑的。
-
----
-
 ## 4. 实验 (Experiments)
 
 ### 4.1 实验总览与验证目标
@@ -260,7 +219,6 @@ $$\mathcal{L}=-\log\frac{\exp(S_{q,d^+})}{\exp(S_{q,d^+})+\sum_{j=1}^{k}\exp(S_{
 
 在 ColBERT 论文的 **Section 5.3 (Ablation Study)** 中，作者针对 `[MASK]` 专门做了一组非常硬核的对比实验，目的是反驳“填充只是为了 Batch 对齐”的直觉。
 
-以下是更具技术深度的实验重构：
 
 
 ### 4.4 实验 3：为什么是这种设计？（机制验证）

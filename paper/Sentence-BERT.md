@@ -11,7 +11,7 @@
 - **关键词 (Keywords)**：Sentence Embeddings, Siamese Network, BERT, Semantic Similarity
 - **文章影响力**：Semantic Scholar/Google Scholar 口径下引用量已达两万级（arXiv 页面聚合信息显示 cited by 21k+）
 - **技术定位**：BERT (Cross-Encoder) $\rightarrow$ **SBERT (Bi-Encoder)** $\rightarrow$ BGE / OpenAI Embeddings
-    
+  
     > SBERT 开启了预训练模型生成高质量、高效率句子向量的时代。
     > 
 
@@ -52,16 +52,15 @@ SBERT 的核心在于：通过不同的 **目标函数（Objective Functions）*
     1. 分别得到句子向量 $u$ 和 $v$。
     2. 构造特征向量：将 $u$、$v$ 和它们的元素级差异 $\|u - v\|$ 进行拼接。
 - **输出 (Output)**：一个经过映射后的概率分布 $\hat{y}$：
-    
+  
     $$
     \hat{y} = \text{softmax}\big(W_t(u, v, \lvert u - v \rvert)\big)
-    
     $$
     
     其中 $W_t \in \mathbb{R}^{3n \times k}$，$n$ 是向量维度，$k$ 是类别数。
     
 - **损失函数 (Loss Function)**：交叉熵损失 (Cross-Entropy Loss)：
-    
+  
     $$
     \mathcal{L} = -\sum y \log(\hat{y})
     $$
@@ -78,13 +77,13 @@ SBERT 的核心在于：通过不同的 **目标函数（Objective Functions）*
     1. 分别得到句子向量 $u$ 和 $v$。
     2. 直接计算两个向量的余弦相似度。
 - **输出 (Output)**：一个相似度预测值：
-    
+  
     $$
     \text{score} = \cos(u, v) = \frac{u \cdot v}{\|u\| \cdot \|v\|}
     $$
     
 - **损失函数 (Loss Function)**：均方误差损失 (MSE Loss)：
-    
+  
     $$
     \mathcal{L} = \big\lVert y - \cos(u, v) \big\rVert^2
     $$
@@ -105,7 +104,7 @@ SBERT 的核心在于：通过不同的 **目标函数（Objective Functions）*
     2. 计算欧氏距离：$d_+ = \|s_a - s_p\|$，$d_- = \|s_a - s_n\|$。
 - **输出 (Output)**：模型并不输出单一标量，而是通过约束向量间的距离关系来学习表征。
 - **损失函数 (Loss Function)**：三元组损失 (Triplet Loss)：
-    
+  
     $$
     \mathcal{L} = \max\big(0,\ \epsilon + \|s_a - s_p\| - \|s_a - s_n\|\big)
     $$

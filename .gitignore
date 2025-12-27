@@ -14,3 +14,5 @@ fine_tuned_poetry_instruction_model
 /diffusers
 
 *.DS_Store
+
+*pdf
